@@ -74,17 +74,20 @@
 
     </RelativeLayout>
 
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="141dp"
         android:layout_height="100dp"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="1dp"
         app:cardCornerRadius="15dp"
         app:cardElevation="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.111"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="@+id/cardView2"
+        app:layout_constraintVertical_bias="0.0">
 
         <TextView
             android:layout_width="wrap_content"
@@ -92,10 +95,10 @@
             android:layout_marginStart="18dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="15dp"
-            android:drawablePadding="-10dp"
             android:drawableTop="@drawable/ic_attendance"
-            android:text="Attendance"
+            android:drawablePadding="-10dp"
             android:fontFamily="@font/fonttype"
+            android:text="Attendance"
             android:textColor="#304FFE"
             android:textSize="20sp" />
 
@@ -105,13 +108,14 @@
         android:id="@+id/cardView2"
         android:layout_width="140dp"
         android:layout_height="100dp"
-        android:layout_marginTop="160dp"
         app:cardCornerRadius="15dp"
         app:cardElevation="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.839"
+        app:layout_constraintHorizontal_bias="0.837"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.288">
 
         <TextView
             android:layout_width="wrap_content"
@@ -120,8 +124,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="15dp"
             android:drawableTop="@drawable/ic_time"
-            android:text="TimeTable"
             android:fontFamily="@font/fonttype"
+            android:text="TimeTable"
             android:textColor="#304FFE"
             android:textSize="20sp" />
     </androidx.cardview.widget.CardView>
@@ -133,10 +137,12 @@
         android:layout_marginTop="60dp"
         app:cardCornerRadius="15dp"
         app:cardElevation="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.107"
+        app:layout_constraintHorizontal_bias="0.111"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView">
+        app:layout_constraintTop_toBottomOf="@+id/cardView"
+        app:layout_constraintVertical_bias="0.0">
 
         <TextView
             android:layout_width="wrap_content"
@@ -145,8 +151,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="15dp"
             android:drawableTop="@drawable/ic_notice"
-            android:text="Noticeboard"
             android:fontFamily="@font/fonttype"
+            android:text="Noticeboard"
             android:textColor="#304FFE"
             android:textSize="20sp" />
     </androidx.cardview.widget.CardView>
@@ -184,24 +190,26 @@
         android:layout_marginTop="60dp"
         app:cardCornerRadius="15dp"
         app:cardElevation="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.111"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView3">
+        app:layout_constraintTop_toBottomOf="@+id/cardView3"
+        app:layout_constraintVertical_bias="0.0">
 
         <TextView
             android:id="@+id/textProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_marginStart="15dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="15dp"
-            android:layout_gravity="center_horizontal"
             android:drawableTop="@drawable/ic_review"
-            android:gravity="center"
-            android:text="Reviews"
             android:drawablePadding="-2dp"
             android:fontFamily="@font/fonttype"
+            android:gravity="center"
+            android:text="Reviews"
             android:textAlignment="center"
             android:textColor="#304FFE"
             android:textSize="20sp" />
@@ -214,10 +222,12 @@
         android:layout_marginTop="60dp"
         app:cardCornerRadius="15dp"
         app:cardElevation="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.839"
+        app:layout_constraintHorizontal_bias="0.837"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView4">
+        app:layout_constraintTop_toBottomOf="@+id/cardView4"
+        app:layout_constraintVertical_bias="0.0">
 
         <TextView
             android:layout_width="wrap_content"
@@ -226,8 +236,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:drawableTop="@drawable/ic_homework"
-            android:text="Assignments"
             android:fontFamily="@font/fonttype"
+            android:text="Assignments"
             android:textColor="#304FFE"
             android:textSize="20sp" />
     </androidx.cardview.widget.CardView>
