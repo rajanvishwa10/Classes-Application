@@ -30,13 +30,23 @@
             android:textSize="25sp" /-->
 
 
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="89dp"
+            android:layout_height="78dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="57dp"
+            android:layout_marginEnd="26dp"
+            android:onClick="gotoDashboard"
+            android:src="@drawable/ic_user" />
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:layout_alignParentTop="true"
             app:title="My Dashboard"
-            android:elevation="4dp"
+            android:elevation="0dp"
             android:background="@color/colorBack"
             app:popupTheme="@style/AppTheme.PopupOverlay"
             app:titleTextColor="@color/colorWhite" />
@@ -168,6 +178,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView5"
         android:layout_width="141dp"
         android:layout_height="100dp"
         android:layout_marginTop="60dp"
@@ -197,6 +208,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView6"
         android:layout_width="140dp"
         android:layout_height="100dp"
         android:layout_marginTop="60dp"
