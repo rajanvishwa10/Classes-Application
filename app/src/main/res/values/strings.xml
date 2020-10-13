@@ -14,4 +14,12 @@
 
     <string name="my_text">Aniket Iratkar</string>
 
+    <string-array name="list">
+        <item>One</item>
+        <item>Two</item>
+        <item>Three</item>
+        <item>Four</item>
+        <item>Five</item>
+    </string-array>
+
 </resources>

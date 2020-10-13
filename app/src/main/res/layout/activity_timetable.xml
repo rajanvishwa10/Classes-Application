@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".Student.TimetableActivity">
     <RelativeLayout
-        android:layout_width="414dp"
+        android:layout_width="match_parent"
         android:layout_height="167dp"
         android:background="@color/colorBack"
         app:layout_constraintEnd_toEndOf="parent"

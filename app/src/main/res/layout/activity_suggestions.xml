@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorBack"
+    android:orientation="vertical"
     tools:context=".Student.SuggestionsActivity">
 
     <RelativeLayout
-        android:layout_width="414dp"
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
         android:layout_height="167dp"
         android:background="@color/colorBack"
         app:layout_constraintEnd_toEndOf="parent"
@@ -15,30 +18,101 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
+            android:layout_height="?attr/actionBarSize"
+            app:navigationIcon="@drawable/ic_baseline_keyboard_backspace_24"
+            app:title="Suggestions"
+            app:titleTextColor="@color/colorWhite"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="20dp"
-                android:fontFamily="@font/fonttype"
-                android:gravity="center"
-                android:text="suggestions"
-                android:textAllCaps="true"
-                android:textColor="@android:color/white"
-                android:textSize="23sp" />
-        </androidx.appcompat.widget.Toolbar>
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="79dp"
-            android:layout_height="69dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="25dp"
-            android:layout_marginBottom="24dp"
-            android:src="@drawable/ic_homework" />
 
     </RelativeLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/relativeLayout"
+        android:background="@drawable/round_top"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
+
+
+        <TextView
+            android:textColor="@color/colorBack"
+            android:id="@+id/textView"
+            android:fontFamily="@font/fonttype"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="74dp"
+            android:layout_marginBottom="10dp"
+            android:text="Select Teacher Name" />
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:spinnerMode="dropdown"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginHorizontal="80dp"
+            android:layout_below="@+id/textView"
+            android:layout_marginBottom="40dp"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/spinner"
+            android:layout_centerHorizontal="true"
+            android:layout_marginHorizontal="50dp"
+            app:cardBackgroundColor="#FFFFFF"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="20dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RatingBar
+                    android:id="@+id/ratingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/border_edittext"
+                    android:theme="@style/RatingBar" />
+
+                <EditText
+                    android:id="@+id/edittext"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_below="@id/ratingBar"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/border_edittext"
+                    android:hint="Suggestions"
+                    android:paddingStart="5dp" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/edittext"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginHorizontal="20sp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/round_button"
+                    android:text="Give Feedback"
+                    android:fontFamily="@font/fonttype"
+                    android:textColor="@color/colorWhite" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="128dp"
+        android:src="@drawable/ic_review" />
+</RelativeLayout>

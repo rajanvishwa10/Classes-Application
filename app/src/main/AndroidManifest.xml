@@ -14,7 +14,8 @@
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity
             android:name=".Student.SuggestionsActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+            android:parentActivityName=".DashboardActivity"/>
         <activity
             android:name=".Student.TimetableActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
