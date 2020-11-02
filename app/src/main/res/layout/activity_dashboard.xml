@@ -38,6 +38,7 @@
             android:layout_alignParentEnd="true"
             android:layout_marginTop="57dp"
             android:layout_marginEnd="26dp"
+            android:id="@+id/imageView"
             android:onClick="gotoDashboard"
             android:src="@drawable/ic_user" />
 
@@ -59,19 +60,34 @@
             android:layout_below="@+id/toolbar"
             android:layout_marginStart="15dp"
             android:layout_marginTop="10dp"
-            android:text="@string/my_text"
             android:onClick="gotoDashboard"
             android:textColor="@color/colorWhite"
             android:textSize="20sp" />
 
         <View
-            android:layout_marginTop="1dp"
-            android:layout_width="120dp"
+            android:layout_width="wrap_content"
             android:layout_height="2dp"
-            android:background="@android:color/white"
             android:layout_below="@+id/text2"
-            android:layout_marginStart="15dp"
-            />
+            android:layout_alignStart="@+id/text2"
+            android:layout_alignEnd="@+id/text2"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="1dp"
+            android:background="@android:color/white" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/imageView"
+            android:layout_alignTop="@+id/imageView"
+            android:layout_alignEnd="@+id/imageView"
+            android:layout_alignBottom="@+id/imageView"
+            android:layout_marginStart="20sp"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="20sp"
+            android:layout_marginBottom="16dp"/>
 
     </RelativeLayout>
 

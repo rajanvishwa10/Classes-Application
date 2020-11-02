@@ -24,7 +24,6 @@
             app:title="Notice Board"
             app:titleTextColor="@color/colorWhite"/>
 
-
     </RelativeLayout>
 
     <RelativeLayout
@@ -50,4 +49,5 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="78dp"
         android:src="@drawable/ic_notice" />
+
 </RelativeLayout>

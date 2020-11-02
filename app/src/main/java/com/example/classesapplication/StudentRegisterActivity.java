@@ -1,5 +1,6 @@
 package com.example.classesapplication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,13 +9,25 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.classesapplication.Student.Student;
 import com.example.classesapplication.ui.home.StudentFragment;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class StudentRegisterActivity extends AppCompatActivity {
+
+    private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_register);
+
+        mAuth = FirebaseAuth.getInstance();
+
         getSupportActionBar().setTitle("Student Registration");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -31,11 +44,11 @@ public class StudentRegisterActivity extends AppCompatActivity {
         editText3 = findViewById(R.id.studentconfirmpass);
         editText4 = findViewById(R.id.studentClass);
 
-        String name = editText.getText().toString().trim();
-        String email = editText1.getText().toString().trim();
+        final String name = editText.getText().toString().trim();
+        final String email = editText1.getText().toString().trim();
         String pass = editText2.getText().toString().trim();
         String cpass = editText3.getText().toString().trim();
-        String studentClass = editText4.getText().toString().trim();
+        final String studentClass = editText4.getText().toString().trim();
 
         if (name.isEmpty()) {
             editText.setError("Enter Name");
@@ -53,9 +66,44 @@ public class StudentRegisterActivity extends AppCompatActivity {
             editText3.setError("Password should match");
             editText3.requestFocus();
         } else {
-            Intent intent = new Intent(this, MainActivity2.class);
-            startActivity(intent);
-            Toast.makeText(this, "Registered", Toast.LENGTH_SHORT).show();
+            mAuth.createUserWithEmailAndPassword(email, pass)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+
+
+                                //mAuth.getCurrentUser();
+                                Student student = new Student(name, email, studentClass,"","");
+                                FirebaseDatabase.getInstance().getReference("Users")
+                                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                        .setValue(student).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()) {
+                                            finish();
+//                                            Intent intent = new Intent(StudentRegisterActivity.this, MainActivity2.class);
+//                                            startActivity(intent);
+
+                                            Toast.makeText(StudentRegisterActivity.this, "Registered", Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            Toast.makeText(StudentRegisterActivity.this, "Registration failed", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+
+                            } else {
+
+                                Toast.makeText(StudentRegisterActivity.this, "Authentication failed.",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+
+
+//            Intent intent = new Intent(this, MainActivity2.class);
+//            startActivity(intent);
+//            Toast.makeText(this, "Registered", Toast.LENGTH_SHORT).show();
         }
 
     }
