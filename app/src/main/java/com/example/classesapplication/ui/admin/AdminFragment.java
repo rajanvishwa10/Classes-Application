@@ -2,6 +2,7 @@ package com.example.classesapplication.ui.admin;
 
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,8 +17,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.classesapplication.AddTeacherActivity;
 import com.example.classesapplication.R;
 import com.google.android.material.textfield.TextInputEditText;
+
+import es.dmoral.toasty.Toasty;
 
 public class AdminFragment extends Fragment {
     View view;
@@ -43,9 +47,12 @@ public class AdminFragment extends Fragment {
                     editText2.setError("Password Empty");
                     editText2.requestFocus();
                 } else if (username.equals("admin") && pass.equals("admin")) {
-                    Toast.makeText(getContext(), "Successful", Toast.LENGTH_SHORT).show();
+                    Toasty.success(getContext(), "Successful", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getContext(), AddTeacherActivity.class);
+                    startActivity(intent);
+
                 }else{
-                    Toast.makeText(getContext(), "Not Successful", Toast.LENGTH_SHORT).show();
+                    Toasty.error(getContext(), "Not Successful", Toast.LENGTH_SHORT).show();
                 }
             }
         });

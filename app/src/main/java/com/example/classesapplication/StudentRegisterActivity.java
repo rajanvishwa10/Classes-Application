@@ -17,6 +17,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
+import es.dmoral.toasty.Toasty;
+
 public class StudentRegisterActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
@@ -85,16 +87,16 @@ public class StudentRegisterActivity extends AppCompatActivity {
 //                                            Intent intent = new Intent(StudentRegisterActivity.this, MainActivity2.class);
 //                                            startActivity(intent);
 
-                                            Toast.makeText(StudentRegisterActivity.this, "Registered", Toast.LENGTH_SHORT).show();
+                                            Toasty.success(StudentRegisterActivity.this, "Registered", Toast.LENGTH_SHORT).show();
                                         } else {
-                                            Toast.makeText(StudentRegisterActivity.this, "Registration failed", Toast.LENGTH_SHORT).show();
+                                            Toasty.error(StudentRegisterActivity.this, "Registration failed", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 });
 
                             } else {
 
-                                Toast.makeText(StudentRegisterActivity.this, "Authentication failed.",
+                                Toasty.error(StudentRegisterActivity.this, "Authentication failed.",
                                         Toast.LENGTH_SHORT).show();
                             }
                         }

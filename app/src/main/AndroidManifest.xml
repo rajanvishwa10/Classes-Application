@@ -2,8 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.classesapplication">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,13 +12,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".AddTeacherActivity" />
         <activity
             android:name=".Teacher.CreateSuggestionsActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity
             android:name=".Student.SuggestionsActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
-            android:parentActivityName=".DashboardActivity"/>
+            android:parentActivityName=".DashboardActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity
             android:name=".Student.TimetableActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
@@ -49,8 +51,7 @@
             android:name=".Student.AttendanceActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity
-            android:name=".TeacherDashboardActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+            android:name=".TeacherDashboardActivity"/>
         <activity
             android:name=".ProfileActivity"
             android:parentActivityName=".DashboardActivity"

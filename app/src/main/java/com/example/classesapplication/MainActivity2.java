@@ -1,6 +1,8 @@
 package com.example.classesapplication;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -49,6 +51,14 @@ public class MainActivity2 extends AppCompatActivity {
 
         getWindow().setNavigationBarColor(getResources().getColor(R.color.colorBack));
         getWindow().setStatusBarColor(getResources().getColor(R.color.colorBack));
+
+        SharedPreferences sharedPreferences = getSharedPreferences("loginStatus", Context.MODE_PRIVATE);
+        boolean status = sharedPreferences.getBoolean("login",false);
+        if(status){
+            Intent intent = new Intent(this, TeacherDashboardActivity.class);
+            startActivity(intent);
+            finish();
+        }
 
     }
 

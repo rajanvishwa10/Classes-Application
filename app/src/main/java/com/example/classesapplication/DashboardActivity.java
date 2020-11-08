@@ -6,7 +6,9 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -56,6 +58,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import es.dmoral.toasty.Toasty;
 
 public class DashboardActivity extends AppCompatActivity {
 
@@ -146,6 +149,10 @@ public class DashboardActivity extends AppCompatActivity {
                     String name = dataSnapshot.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("name").getValue(String.class);
                     String url = dataSnapshot.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("profileImage").getValue(String.class);
                     textView.setText(name);
+                    SharedPreferences sharedPreferences = getSharedPreferences("Student", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("name",name);
+                    editor.apply();
                     Glide.with(DashboardActivity.this).load(url).addListener(new RequestListener<Drawable>() {
                         @Override
                         public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
@@ -161,7 +168,7 @@ public class DashboardActivity extends AppCompatActivity {
                     }).into(circleImageView);
 //                    Log.d("mytag", "Value is: " + name);
                 } else {
-                    Toast.makeText(DashboardActivity.this, "Nothing to show", Toast.LENGTH_SHORT).show();
+                    Toasty.error(DashboardActivity.this, "Nothing to show", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -169,7 +176,7 @@ public class DashboardActivity extends AppCompatActivity {
             @Override
             public void onCancelled(DatabaseError error) {
                 //Failed to read value
-                Toast.makeText(DashboardActivity.this, "error", Toast.LENGTH_SHORT).show();
+                Toasty.error(DashboardActivity.this, "error", Toast.LENGTH_SHORT).show();
             }
         });
     }

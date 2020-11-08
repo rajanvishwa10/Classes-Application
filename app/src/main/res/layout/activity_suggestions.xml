@@ -82,11 +82,12 @@
                     android:theme="@style/RatingBar" />
 
                 <EditText
-                    android:id="@+id/edittext"
+                    android:id="@+id/suggestions"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_below="@id/ratingBar"
                     android:layout_marginHorizontal="10dp"
+                    android:gravity="top"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
                     android:background="@drawable/border_edittext"
@@ -96,12 +97,13 @@
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/edittext"
+                    android:layout_below="@id/suggestions"
                     android:layout_centerHorizontal="true"
                     android:layout_marginHorizontal="20sp"
                     android:layout_marginBottom="5dp"
                     android:background="@drawable/round_button"
                     android:text="Give Feedback"
+                    android:onClick="giveFeedback"
                     android:fontFamily="@font/fonttype"
                     android:textColor="@color/colorWhite" />
             </RelativeLayout>

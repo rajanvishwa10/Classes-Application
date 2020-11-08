@@ -44,6 +44,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import es.dmoral.toasty.Toasty;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -122,7 +123,7 @@ public class ProfileActivity extends AppCompatActivity {
                                 }
                             }).into(circleImageView);
                 } else {
-                    Toast.makeText(ProfileActivity.this, "Nothing to show", Toast.LENGTH_SHORT).show();
+                    Toasty.error(ProfileActivity.this, "Nothing to show", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -130,12 +131,12 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onCancelled(DatabaseError error) {
                 //Failed to read value
-                Toast.makeText(ProfileActivity.this, "error", Toast.LENGTH_SHORT).show();
+                Toasty.error(ProfileActivity.this, "error", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void update(String name, String phoneNo, String guardian, Uri uri) {
+    private void update(String name, String phoneNo, String guardian) {
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users")
                 .child(FirebaseAuth.getInstance().getUid());
@@ -145,7 +146,6 @@ public class ProfileActivity extends AppCompatActivity {
         updates.put("name", name);
         updates.put("mobile", phoneNo);
         updates.put("guardianName", guardian);
-        updates.put("profileImage", String.valueOf(uri));
 
         ref.updateChildren(updates).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
@@ -158,7 +158,7 @@ public class ProfileActivity extends AppCompatActivity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(ProfileActivity.this, "Not Updated", Toast.LENGTH_SHORT).show();
+                Toasty.success(ProfileActivity.this, "Not Updated", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -180,7 +180,7 @@ public class ProfileActivity extends AppCompatActivity {
             editText4.setError("Enter Guardian Name");
             editText4.requestFocus();
         } else {
-            update(name, phone, guardianName, Imageuri);
+            update(name, phone, guardianName);
         }
     }
 
@@ -227,7 +227,7 @@ public class ProfileActivity extends AppCompatActivity {
             }
 
         } else {
-            Toast.makeText(this, "No data", Toast.LENGTH_SHORT).show();
+            Toasty.error(this, "No data", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -252,7 +252,7 @@ public class ProfileActivity extends AppCompatActivity {
                                         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users")
                                                 .child(FirebaseAuth.getInstance().getUid());
 
-                                        Map<String, Object> updates = new HashMap<String, Object>();
+                                        Map<String, Object> updates = new HashMap<>();
 
                                         updates.put("profileImage", String.valueOf(Imguri));
 
@@ -260,14 +260,14 @@ public class ProfileActivity extends AppCompatActivity {
                                             @Override
                                             public void onSuccess(Void aVoid) {
                                                 progressBar.setVisibility(View.GONE);
-                                                Toast.makeText(ProfileActivity.this, "Profile Photo Uploaded", Toast.LENGTH_SHORT).show();
+                                                Toasty.success(ProfileActivity.this, "Profile Photo Uploaded", Toast.LENGTH_SHORT).show();
 
                                             }
                                         }).addOnFailureListener(new OnFailureListener() {
                                             @Override
                                             public void onFailure(@NonNull Exception e) {
                                                 progressBar.setVisibility(View.GONE);
-                                                Toast.makeText(ProfileActivity.this, "Not Updated", Toast.LENGTH_SHORT).show();
+                                                Toasty.error(ProfileActivity.this, "Not Updated", Toast.LENGTH_SHORT).show();
                                             }
                                         });
                                     }
@@ -279,7 +279,7 @@ public class ProfileActivity extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(ProfileActivity.this, "Upload failed", Toast.LENGTH_SHORT).show();
+                        Toasty.success(ProfileActivity.this, "Upload failed", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
