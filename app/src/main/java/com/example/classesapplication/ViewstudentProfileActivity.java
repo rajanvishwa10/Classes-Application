@@ -18,6 +18,7 @@ public class ViewstudentProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_viewstudent_profile);
 
         getSupportActionBar().setTitle("Student Profile");
+        getWindow().setStatusBarColor(getResources().getColor(R.color.colorBack));
 
         TextView textView = findViewById(R.id.name);
         TextView textView2 = findViewById(R.id.email);
@@ -26,11 +27,11 @@ public class ViewstudentProfileActivity extends AppCompatActivity {
         TextView textView5 = findViewById(R.id.guardname);
         ImageView imageView = findViewById(R.id.imageView);
 
-        textView.setText(getIntent().getStringExtra("name"));
-        textView2.setText(getIntent().getStringExtra("email"));
-        textView3.setText(getIntent().getStringExtra("class"));
-        textView4.setText(getIntent().getStringExtra("phone"));
-        textView5.setText(getIntent().getStringExtra("guardian"));
+        textView.setText("Name : "+getIntent().getStringExtra("name"));
+        textView2.setText("Email : "+getIntent().getStringExtra("email"));
+        textView3.setText("Class : "+getIntent().getStringExtra("class"));
+        textView4.setText("Phone : "+getIntent().getStringExtra("phone"));
+        textView5.setText("Guardian Name : "+getIntent().getStringExtra("guardian"));
 
         String image = getIntent().getStringExtra("profilepic");
         Glide.with(this).load(image).into(imageView);

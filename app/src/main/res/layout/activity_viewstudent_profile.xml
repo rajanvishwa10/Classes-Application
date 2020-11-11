@@ -38,68 +38,7 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
 
-                <TextView
-                    android:textSize="16sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="45dp"
-                    android:paddingVertical="10dp"
-                    android:paddingStart="10dp"
-                    android:text="Name :"
-                    android:textColor="@android:color/black" />
-
-
-                <TextView
-                    android:textSize="16sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:paddingVertical="10dp"
-                    android:paddingStart="10dp"
-                    android:text="Email :"
-                    android:textColor="@android:color/black" />
-
-                <TextView
-                    android:textSize="16sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:paddingVertical="10dp"
-                    android:paddingStart="10dp"
-                    android:text="Phone: "
-                    android:textColor="@android:color/black" />
-
-                <TextView
-                    android:textSize="16sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:paddingVertical="10dp"
-                    android:paddingStart="10dp"
-                    android:text="Guardian Name :"
-                    android:textColor="@android:color/black" />
-
-                <TextView
-                    android:textSize="16sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="30dp"
-                    android:paddingVertical="10dp"
-                    android:paddingStart="10dp"
-                    android:text="Student Class :"
-                    android:textColor="@android:color/black" />
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -111,17 +50,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="45dp"
-                    android:layout_marginEnd="20dp"
+                    android:layout_marginHorizontal="10dp"
                     android:paddingVertical="10dp"
                     android:paddingStart="10dp"
                     android:text="Name"
                     android:textColor="@android:color/black" />
                 <TextView
-                    android:textSize="16sp"
                     android:id="@+id/email"
+                    android:textSize="16sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="20dp"
+                    android:layout_marginHorizontal="10dp"
                     android:layout_marginTop="10dp"
                     android:paddingVertical="10dp"
                     android:paddingStart="10dp"
@@ -133,7 +72,7 @@
                     android:id="@+id/phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="20dp"
+                    android:layout_marginHorizontal="10dp"
                     android:layout_marginTop="10dp"
                     android:paddingVertical="10dp"
                     android:paddingStart="10dp"
@@ -145,7 +84,7 @@
                     android:id="@+id/guardname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="20dp"
+                    android:layout_marginHorizontal="10dp"
                     android:layout_marginTop="10dp"
                     android:paddingVertical="10dp"
                     android:paddingStart="10dp"
@@ -157,12 +96,12 @@
                     android:id="@+id/studentClass"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="20dp"
+                    android:layout_marginHorizontal="10dp"
                     android:layout_marginTop="10dp"
                     android:paddingVertical="10dp"
                     android:paddingStart="10dp"
                     android:text="Student Class"
-                    android:layout_marginBottom="30dp"
+                    android:layout_marginBottom="20sp"
                     android:textColor="@android:color/black" />
             </LinearLayout>
 
