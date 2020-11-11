@@ -12,6 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ViewstudentProfileActivity"></activity>
+        <activity android:name=".ViewReviewcardActivity" />
+        <activity android:name=".CreateNoticeActivity" />
+        <activity android:name=".ViewStudentActivity" />
+        <activity android:name=".AdminDashboard" />
         <activity android:name=".AddTeacherActivity" />
         <activity
             android:name=".Teacher.CreateSuggestionsActivity"
@@ -50,8 +55,7 @@
         <activity
             android:name=".Student.AttendanceActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
-        <activity
-            android:name=".TeacherDashboardActivity"/>
+        <activity android:name=".TeacherDashboardActivity" />
         <activity
             android:name=".ProfileActivity"
             android:parentActivityName=".DashboardActivity"

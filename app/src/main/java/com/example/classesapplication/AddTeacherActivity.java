@@ -46,11 +46,11 @@ public class AddTeacherActivity extends AppCompatActivity {
         button = findViewById(R.id.addTeacher);
 
         progressBar = findViewById(R.id.progressBar3);
+        progressBar.setVisibility(View.GONE);
 
     }
 
     public void addTeacher(View view) {
-
 
         String teacherName = editText.getText().toString();
         String teacherPass = editText1.getText().toString();
@@ -73,13 +73,12 @@ public class AddTeacherActivity extends AppCompatActivity {
         DatabaseReference myRef = database.getReference("Teachers");
         myRef.orderByChild("TeacherName").equalTo(teacherName).addListenerForSingleValueEvent(new ValueEventListener() {
 
-
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     button.setText("Add Teacher");
                     progressBar.setVisibility(View.GONE);
-                    Toasty.success(AddTeacherActivity.this, "Teacher already Present", Toast.LENGTH_SHORT).show();
+                    Toasty.success(AddTeacherActivity.this, "Teacher already Present", Toast.LENGTH_LONG).show();
                 } else {
                     addTeacherinFirebase(teacherName, teacherPass);
                 }
@@ -89,9 +88,12 @@ public class AddTeacherActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+                Toasty.error(AddTeacherActivity.this, "Database error", Toasty.LENGTH_LONG).show();
+
             }
         });
     }
+
 
     private void addTeacherinFirebase(String name, String pass) {
         HashMap<String, Object> hashMap = new HashMap<>();

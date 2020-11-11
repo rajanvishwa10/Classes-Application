@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.classesapplication.AddTeacherActivity;
+import com.example.classesapplication.AdminDashboard;
 import com.example.classesapplication.R;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -48,7 +49,7 @@ public class AdminFragment extends Fragment {
                     editText2.requestFocus();
                 } else if (username.equals("admin") && pass.equals("admin")) {
                     Toasty.success(getContext(), "Successful", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getContext(), AddTeacherActivity.class);
+                    Intent intent = new Intent(getContext(), AdminDashboard.class);
                     startActivity(intent);
 
                 }else{
