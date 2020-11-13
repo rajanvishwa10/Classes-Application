@@ -130,9 +130,6 @@ public class DashboardActivity extends AppCompatActivity {
         });
 
 
-
-
-
         textView = findViewById(R.id.text2);
         read();
 
@@ -151,7 +148,7 @@ public class DashboardActivity extends AppCompatActivity {
                     textView.setText(name);
                     SharedPreferences sharedPreferences = getSharedPreferences("Student", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("name",name);
+                    editor.putString("name", name);
                     editor.apply();
                     Glide.with(DashboardActivity.this).load(url).addListener(new RequestListener<Drawable>() {
                         @Override
@@ -185,8 +182,6 @@ public class DashboardActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ProfileActivity.class);
         startActivity(intent);
     }
-
-
 
 
 }

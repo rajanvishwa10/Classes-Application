@@ -41,6 +41,9 @@ public class AddTeacherActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_teacher);
 
         getSupportActionBar().setTitle("Add Teacher");
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+        getWindow().setStatusBarColor(getResources().getColor(R.color.colorBack));
+        getWindow().setNavigationBarColor(getResources().getColor(R.color.colorWhite));
         editText = findViewById(R.id.teachername);
         editText1 = findViewById(R.id.teacherpass);
         button = findViewById(R.id.addTeacher);

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;
@@ -34,6 +35,11 @@ public class ViewStudentActivity extends AppCompatActivity {
         fetchData = new ArrayList<>();
 
         getSupportActionBar().setTitle("Students");
+
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+        getWindow().setStatusBarColor(getResources().getColor(R.color.colorBack));
+        getWindow().setNavigationBarColor(getResources().getColor(R.color.colorWhite));
+
         databaseReference = FirebaseDatabase.getInstance()
                 .getReference().child("Users");
 

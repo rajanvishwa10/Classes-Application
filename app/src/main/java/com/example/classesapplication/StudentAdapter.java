@@ -71,8 +71,7 @@ class StudentAdapter extends FirebaseRecyclerAdapter<StudentGetClass,StudentAdap
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView textView;
         ImageView imageView;
-        CardView cardView
-                ;
+        CardView cardView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

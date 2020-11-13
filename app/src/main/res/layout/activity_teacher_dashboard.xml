@@ -4,14 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/colorBack"
+    android:orientation="vertical"
     tools:context=".TeacherDashboardActivity">
-
-
-
-
-
 
 
     <androidx.cardview.widget.CardView
@@ -32,10 +27,10 @@
             android:layout_marginStart="18dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="15dp"
-            android:drawablePadding="-5dp"
             android:drawableTop="@drawable/ic_attendance"
-            android:text="Attendance"
+            android:drawablePadding="-5dp"
             android:fontFamily="@font/fonttype"
+            android:text="Attendance"
             android:textColor="#304FFE"
             android:textSize="20sp" />
 
@@ -58,12 +53,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="3dp"
-            android:drawablePadding="-8dp"
             android:layout_marginEnd="15dp"
-            android:gravity="center"
             android:drawableTop="@drawable/ic_time"
-            android:text="Create\n TimeTable"
+            android:drawablePadding="-8dp"
             android:fontFamily="@font/fonttype"
+            android:gravity="center"
+            android:text="Create\n TimeTable"
             android:textColor="#304FFE"
             android:textSize="20sp" />
     </androidx.cardview.widget.CardView>
@@ -108,18 +103,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
             android:drawableTop="@drawable/ic_quiz"
-            android:gravity="center"
-            android:layout_gravity="center_horizontal"
             android:drawablePadding="-5dp"
-            android:text="Create Quiz"
             android:fontFamily="@font/fonttype"
+            android:gravity="center"
+            android:text="Create Quiz"
             android:textColor="#304FFE"
             android:textSize="20sp" />
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView5"
         android:layout_width="141dp"
         android:layout_height="100dp"
         android:layout_marginTop="60dp"
@@ -134,18 +130,19 @@
             android:id="@+id/textProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
             android:drawableTop="@drawable/ic_review"
-            android:text="View Reviews"
             android:drawablePadding="-5dp"
             android:fontFamily="@font/fonttype"
+            android:text="View Reviews"
             android:textAlignment="center"
             android:textColor="#304FFE"
             android:textSize="20sp" />
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView6"
         android:layout_width="140dp"
         android:layout_height="100dp"
         android:layout_marginTop="60dp"
@@ -161,12 +158,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="5dp"
-            android:drawablePadding="-10dp"
             android:layout_marginEnd="10dp"
-            android:gravity="center"
             android:drawableTop="@drawable/ic_homework"
-            android:text="Create Assignments"
+            android:drawablePadding="-10dp"
             android:fontFamily="@font/fonttype"
+            android:gravity="center"
+            android:text="Create Assignments"
             android:textColor="#304FFE"
             android:textSize="20sp" />
     </androidx.cardview.widget.CardView>

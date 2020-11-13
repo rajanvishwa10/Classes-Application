@@ -32,9 +32,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import es.dmoral.toasty.Toasty;
 
@@ -97,15 +101,20 @@ public class SuggestionsActivity extends AppCompatActivity implements AdapterVie
         String suggestion = editText.getText().toString();
         SharedPreferences sharedPreferences = getSharedPreferences("Student", Context.MODE_PRIVATE);
         String studentName = sharedPreferences.getString("name","");
-        addTeacherinFirebase(ratingString,suggestion,text,studentName);
+
+        Date c = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss", Locale.getDefault());
+        String formattedDate = df.format(c);
+        addTeacherinFirebase(ratingString,suggestion,text,studentName,formattedDate);
     }
 
-    private void addTeacherinFirebase(String rating, String suggestion, String name, String studentName) {
+    private void addTeacherinFirebase(String rating, String suggestion, String name, String studentName, String date) {
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("TeacherName", name);
         hashMap.put("Rating", rating);
         hashMap.put("Suggestions", suggestion);
         hashMap.put("StudentName", studentName);
+        hashMap.put("Date", date);
         long count = System.currentTimeMillis();
         FirebaseDatabase.getInstance().getReference("Admin").child("Teacher Review").child(name+count)
                 .updateChildren(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
