@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.classesapplication.Student.AssignmentsActivity;
 import com.example.classesapplication.Teacher.CreateAssignmentsActivity;
 import com.example.classesapplication.Teacher.CreateNoticeActivity;
 import com.example.classesapplication.Teacher.CreateQuizActivity;
@@ -32,7 +33,8 @@ public class TeacherDashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_teacher_dashboard);
 
 
-        getWindow().setNavigationBarColor(getResources().getColor(R.color.colorBack));
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+        getWindow().setNavigationBarColor(getResources().getColor(R.color.colorWhite));
         getWindow().setStatusBarColor(getResources().getColor(R.color.colorBack));
 
         getSupportActionBar().setTitle("Teacher Dashboard");
@@ -50,7 +52,7 @@ public class TeacherDashboardActivity extends AppCompatActivity {
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), CreateAssignmentsActivity.class);
+                Intent intent = new Intent(getApplicationContext(), SetAttendanceActivity.class);
                 startActivity(intent);
             }
         });
@@ -85,7 +87,7 @@ public class TeacherDashboardActivity extends AppCompatActivity {
         cardView6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), SetAttendanceActivity.class);
+                Intent intent = new Intent(getApplicationContext(), CreateAssignmentsActivity.class);
                 startActivity(intent);
             }
         });

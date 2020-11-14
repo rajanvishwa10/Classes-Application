@@ -141,7 +141,6 @@ public class CreateNewNoticeActivity extends AppCompatActivity {
     }
 
     public void selectFile(View view) {
-        Toast.makeText(this, "Clicked", Toast.LENGTH_SHORT).show();
         request();
     }
 
