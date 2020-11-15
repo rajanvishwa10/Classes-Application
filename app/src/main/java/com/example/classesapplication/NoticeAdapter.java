@@ -21,10 +21,17 @@ public class NoticeAdapter extends FirebaseRecyclerAdapter<Notice, NoticeAdapter
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull NoticeAdapter.ViewHolder holder, int i, @NonNull Notice notice) {
+    protected void onBindViewHolder(@NonNull final NoticeAdapter.ViewHolder holder, int i, @NonNull Notice notice) {
         final String image = notice.getNoticeImage();
         Glide.with(holder.imageView.getContext()).load(image).into(holder.imageView);
-
+        holder.imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(holder.imageView.getContext(), ImageActivity.class);
+                intent.putExtra("image",image);
+                holder.imageView.getContext().startActivity(intent);
+            }
+        });
         final String name = notice.getNoticeText();
         holder.noticeTextView.setText(name);
 

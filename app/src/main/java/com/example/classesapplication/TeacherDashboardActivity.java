@@ -27,6 +27,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class TeacherDashboardActivity extends AppCompatActivity {
 
     TextView textView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,14 +40,15 @@ public class TeacherDashboardActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Teacher Dashboard");
 
+        SharedPreferences sharedPreferences = getSharedPreferences("teachername", Context.MODE_PRIVATE);
+        String teachername = sharedPreferences.getString("teachername", "");
+
         textView = findViewById(R.id.teachername);
-        textView.setText(getIntent().getStringExtra("teachername"));
+        textView.setText(teachername);
 
         CardView cardView = findViewById(R.id.cardView);
         CardView cardView2 = findViewById(R.id.cardView2);
         CardView cardView3 = findViewById(R.id.cardView3);
-        CardView cardView4 = findViewById(R.id.cardView4);
-        CardView cardView5 = findViewById(R.id.cardView5);
         CardView cardView6 = findViewById(R.id.cardView6);
 
         cardView.setOnClickListener(new View.OnClickListener() {
@@ -67,20 +69,6 @@ public class TeacherDashboardActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), CreateNoticeActivity.class);
-                startActivity(intent);
-            }
-        });
-        cardView4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), CreateQuizActivity.class);
-                startActivity(intent);
-            }
-        });
-        cardView5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), CreateSuggestionsActivity.class);
                 startActivity(intent);
             }
         });

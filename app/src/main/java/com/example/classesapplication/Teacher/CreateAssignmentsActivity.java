@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
 import android.app.ProgressDialog;
@@ -19,15 +21,24 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.classesapplication.AddAssignmentsActivity;
+import com.example.classesapplication.AssignmentAdapter;
+import com.example.classesapplication.Assignments;
 import com.example.classesapplication.CreateNewNoticeActivity;
 import com.example.classesapplication.CreateNoticeActivity;
+import com.example.classesapplication.Notice;
+import com.example.classesapplication.NoticeAdapter;
 import com.example.classesapplication.R;
+import com.example.classesapplication.Student.AssignmentsActivity;
 import com.example.classesapplication.TeacherDashboardActivity;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -50,10 +61,8 @@ import es.dmoral.toasty.Toasty;
 
 public class CreateAssignmentsActivity extends AppCompatActivity {
 
-    Uri uri;
-    Bitmap bitmap;
-    String text = "";
-    ProgressDialog progressDialog;
+    RecyclerView recyclerView;
+    AssignmentAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,194 +75,55 @@ public class CreateAssignmentsActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle("Assignment Uploading");
-        progressDialog.setMessage("Uploading in progress");
-
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
         });
+
+        recyclerView = findViewById(R.id.recyclerView);
+        LinearLayoutManager LayoutManager = new LinearLayoutManager(this);
+        LayoutManager.setReverseLayout(true);
+        LayoutManager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(LayoutManager);
+
+        FirebaseRecyclerOptions<Assignments> options =
+                new FirebaseRecyclerOptions.Builder<Assignments>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("Assignments"), Assignments.class)
+                        .build();
+
+
+        adapter = new AssignmentAdapter(options);
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (requestCode) {
-            case 1:
-                if (resultCode == RESULT_OK) {
-                    // Get the Uri of the selected file
-                    Uri uri = data.getData();
-                    try {
-                        bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    ImageView imageView = findViewById(R.id.imageView);
-                    imageView.setImageURI(uri);
-                    Log.d("TAG", "File Uri: " + uri.toString());
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.add_notice, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
-                }
-                break;
-
-            case 3:
-                Uri pdfpath = data.getData();
-                Toast.makeText(this, "Pdf Uploading", Toast.LENGTH_SHORT).show();
-                StorageReference riversRef = FirebaseStorage.getInstance().getReference().child("uploadPdf" + System.currentTimeMillis() + ".pdf");
-
-                riversRef.putFile(pdfpath)
-                        .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                            @Override
-                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                // Get a URL to the uploaded content
-                                Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
-                                while (!uriTask.isComplete()) ;
-                                uri = uriTask.getResult();
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception exception) {
-                                // Handle unsuccessful uploads
-                                // ...
-                            }
-                        });
-                break;
-            case 0:
-                if (resultCode == RESULT_OK) {
-                    bitmap = (Bitmap) data.getExtras().get("data");
-                    ImageView imageView = findViewById(R.id.imageView);
-                    imageView.setImageBitmap(bitmap);
-                }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.addnotice) {
+            Intent intent = new Intent(CreateAssignmentsActivity.this, AddAssignmentsActivity.class);
+            startActivity(intent);
         }
-        super.onActivityResult(requestCode, resultCode, data);
+
+        return super.onOptionsItemSelected(item);
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        adapter.startListening();
     }
 
-    public void selectFile(View view) {
-        request();
-    }
+    @Override
+    protected void onStop() {
+        super.onStop();
 
-    public void chooseFile(View view) {
-        Intent intent = new Intent();
-        intent.setType("application/pdf");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select PDF"), 3);
-    }
-
-
-    private void request() {
-        if (ContextCompat.checkSelfPermission
-                (this,
-                        Manifest.permission.READ_EXTERNAL_STORAGE
-                ) == PackageManager.PERMISSION_GRANTED
-        ) {
-            SelectImage();
-        } else {
-            ActivityCompat.requestPermissions(
-                    this,
-                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                    1
-            );
-
-        }
-    }
-
-    private void SelectImage() {
-        final CharSequence[] items = {"Gallery", "Camera", "Cancel"};
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Add Image");
-        builder.setItems(items, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                if (items[i].equals("Camera")) {
-                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    startActivityForResult(intent, 0);
-                } else if (items[i].equals("Gallery")) {
-                    Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    intent.setType("image/*");
-                    startActivityForResult(intent.createChooser(intent, "Select file"), 1);
-                } else if (items[i].equals("Cancel")) {
-                    dialogInterface.dismiss();
-                }
-            }
-        });
-        builder.create().show();
-    }
-
-    public void addAssignment(View view) {
-        EditText editText = findViewById(R.id.assignment);
-        text = editText.getText().toString();
-        progressDialog.show();
-        postAssignment(bitmap, uri, text);
-    }
-
-    private void postAssignment(Bitmap bitmap, final Uri uri, final String text) {
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
-
-        final Date c = Calendar.getInstance().getTime();
-        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss", Locale.getDefault());
-        final String formattedDate = df.format(c);
-
-
-        final StorageReference reference = FirebaseStorage.getInstance().getReference().
-                child("Assignments").
-                child(formattedDate + ".jpeg");
-
-        reference.putBytes(byteArrayOutputStream.toByteArray())
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-                        reference.getDownloadUrl().addOnSuccessListener(
-                                new OnSuccessListener<Uri>() {
-                                    @Override
-                                    public void onSuccess(Uri Imguri) {
-                                        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Assignments")
-                                                .child("Assignment " + formattedDate);
-
-                                        Map<String, Object> updates = new HashMap<>();
-
-                                        updates.put("Assignment Image", String.valueOf(Imguri));
-                                        updates.put("Assignment Pdf", uri);
-                                        updates.put("Assignment Details", text);
-                                        updates.put("Date", formattedDate);
-
-                                        ref.updateChildren(updates).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                            @Override
-                                            public void onSuccess(Void aVoid) {
-                                                progressDialog.dismiss();//
-                                                Toasty.success(CreateAssignmentsActivity.this, "Assignment Uploaded", Toast.LENGTH_LONG).show();
-                                                Intent intent = new Intent(CreateAssignmentsActivity.this, TeacherDashboardActivity.class);
-                                                startActivity(intent);
-
-                                            }
-                                        }).addOnFailureListener(new OnFailureListener() {
-                                            @Override
-                                            public void onFailure(@NonNull Exception e) {
-                                                progressDialog.dismiss();
-                                                Toasty.error(CreateAssignmentsActivity.this, "Assignment Upload fail", Toast.LENGTH_LONG).show();
-                                                Intent intent = new Intent(CreateAssignmentsActivity.this, com.example.classesapplication.CreateNoticeActivity.class);
-                                                startActivity(intent);
-                                            }
-                                        });
-
-
-                                    }
-                                }
-                        );
-
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-//
-                        progressDialog.dismiss();
-                        Toasty.error(CreateAssignmentsActivity.this, "Upload failed", Toast.LENGTH_SHORT).show();
-                    }
-                });
+        adapter.stopListening();
     }
 }

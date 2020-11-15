@@ -83,10 +83,11 @@ public class TeacherFragment extends Fragment {
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
                                 editor.putBoolean("login",true);
                                 editor.apply();
-
-                                Intent intent = new Intent(getContext(), TeacherDashboardActivity.class)
-                                        ;
-                                intent.putExtra("teachername", teacherName);
+                                SharedPreferences preferences = getActivity().getSharedPreferences("teachername",Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor1 = preferences.edit();
+                                editor1.putString("teachername",teacherName);
+                                editor1.apply();
+                                Intent intent = new Intent(getContext(), TeacherDashboardActivity.class);
                                 startActivity(intent);
                                 getActivity().finish();
                             } else {

@@ -12,7 +12,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CreateNewNoticeActivity"></activity>
+        <activity android:name=".ImageActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.Dialog.MinWidth"/>
+        <activity
+            android:name=".AddAssignmentsActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+        <activity android:name=".CreateNewNoticeActivity" />
         <activity android:name=".ViewstudentProfileActivity" />
         <activity android:name=".ViewReviewcardActivity" />
         <activity android:name=".CreateNoticeActivity" />
