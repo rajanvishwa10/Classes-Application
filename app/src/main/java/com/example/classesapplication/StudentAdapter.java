@@ -20,9 +20,7 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 
 import java.util.List;
 
-class StudentAdapter extends FirebaseRecyclerAdapter<StudentGetClass,StudentAdapter.ViewHolder> {
-
-
+class StudentAdapter extends FirebaseRecyclerAdapter<StudentGetClass, StudentAdapter.ViewHolder> {
 
 
     public StudentAdapter(FirebaseRecyclerOptions options) {
@@ -39,9 +37,6 @@ class StudentAdapter extends FirebaseRecyclerAdapter<StudentGetClass,StudentAdap
     }
 
 
-
-
-
     @Override
     protected void onBindViewHolder(@NonNull final ViewHolder holder, int i, @NonNull final StudentGetClass studentGetClass) {
 
@@ -56,12 +51,12 @@ class StudentAdapter extends FirebaseRecyclerAdapter<StudentGetClass,StudentAdap
             public void onClick(View view) {
 //                Toast.makeText(holder.cardView.getContext(), name, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(holder.cardView.getContext(), ViewstudentProfileActivity.class);
-                intent.putExtra("name",name);
-                intent.putExtra("email",studentGetClass.getEmail());
-                intent.putExtra("class",studentGetClass.getcLass());
-                intent.putExtra("phone",studentGetClass.getMobile());
-                intent.putExtra("profilepic",image);
-                intent.putExtra("guardian",studentGetClass.getGuardianName());
+                intent.putExtra("name", name);
+                intent.putExtra("email", studentGetClass.getEmail());
+                intent.putExtra("class", studentGetClass.getcLass());
+                intent.putExtra("phone", studentGetClass.getMobile());
+                intent.putExtra("profilepic", image);
+                intent.putExtra("guardian", studentGetClass.getGuardianName());
                 holder.cardView.getContext().startActivity(intent);
             }
         });

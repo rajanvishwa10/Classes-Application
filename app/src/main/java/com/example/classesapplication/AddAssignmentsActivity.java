@@ -100,6 +100,7 @@ public class AddAssignmentsActivity extends AppCompatActivity {
                             @Override
                             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                                 // Get a URL to the uploaded content
+                                Toasty.success(AddAssignmentsActivity.this,"Pdf Uploaded",Toasty.LENGTH_LONG);
                                 Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
                                 while (!uriTask.isComplete()) ;
                                 uri = uriTask.getResult();
@@ -108,6 +109,7 @@ public class AddAssignmentsActivity extends AppCompatActivity {
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception exception) {
+                                Toasty.success(AddAssignmentsActivity.this,"Pdf Uploaded",Toasty.LENGTH_LONG);
                                 // Handle unsuccessful uploads
                                 // ...
                             }
@@ -210,7 +212,9 @@ public class AddAssignmentsActivity extends AppCompatActivity {
                                         Map<String, Object> updates = new HashMap<>();
 
                                         updates.put("Assignment_Image", String.valueOf(Imguri));
-                                        updates.put("Assignment_Pdf", uri);
+
+                                            updates.put("Assignment_Pdf", uri);
+
                                         updates.put("Assignment_Details", text);
                                         updates.put("Date", formattedDate);
 

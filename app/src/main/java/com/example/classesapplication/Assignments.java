@@ -1,7 +1,7 @@
 package com.example.classesapplication;
 
 public class Assignments {
-    String Assignment_Details, Assignment_Image, Date;
+    String Assignment_Details, Assignment_Image, Date, Assignment_Pdf;
 
     public Assignments() {
     }
@@ -9,7 +9,7 @@ public class Assignments {
     public Assignments(String assignment_Details, String assignment_Image, String assignment_Pdf, String date) {
         Assignment_Details = assignment_Details;
         Assignment_Image = assignment_Image;
-//        Assignment_Pdf = assignment_Pdf;
+        Assignment_Pdf = assignment_Pdf;
         Date = date;
     }
 
@@ -29,13 +29,13 @@ public class Assignments {
         Assignment_Image = assignment_Image;
     }
 
-//    public String getAssignment_Pdf() {
-//        return Assignment_Pdf;
-//    }
+    public String getAssignment_Pdf() {
+        return Assignment_Pdf;
+    }
 
-//    public void setAssignment_Pdf(String assignment_Pdf) {
-//        Assignment_Pdf = assignment_Pdf;
-//    }
+    public void setAssignment_Pdf(String assignment_Pdf) {
+        Assignment_Pdf = assignment_Pdf;
+    }
 
     public String getDate() {
         return Date;

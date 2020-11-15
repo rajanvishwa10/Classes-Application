@@ -16,6 +16,8 @@ import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
+import es.dmoral.toasty.Toasty;
+
 public class AssignmentAdapter extends FirebaseRecyclerAdapter<Assignments, AssignmentAdapter.ViewHolder> {
 
 
@@ -35,6 +37,24 @@ public class AssignmentAdapter extends FirebaseRecyclerAdapter<Assignments, Assi
                 holder.imageView.getContext().startActivity(intent);
             }
         });
+
+        final String pdf = assignments.getAssignment_Pdf();
+
+
+        holder.button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try{
+                    if(pdf.equals(null)){
+                        Toasty.warning(holder.button.getContext(),"No Pdf to Download", Toasty.LENGTH_LONG);
+                    }
+                }catch (NullPointerException e){
+                    Toasty.warning(holder.button.getContext(),"No Pdf to Download", Toasty.LENGTH_LONG);
+                }
+
+            }
+        });
+
         final String details = assignments.getAssignment_Details();
         holder.Assignment_details.setText(details);
 

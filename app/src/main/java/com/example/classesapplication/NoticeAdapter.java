@@ -32,6 +32,7 @@ public class NoticeAdapter extends FirebaseRecyclerAdapter<Notice, NoticeAdapter
                 holder.imageView.getContext().startActivity(intent);
             }
         });
+
         final String name = notice.getNoticeText();
         holder.noticeTextView.setText(name);
 
