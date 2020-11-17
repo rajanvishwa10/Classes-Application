@@ -26,49 +26,49 @@
         <activity android:name=".AddTeacherActivity" />
         <activity
             android:name=".Teacher.CreateSuggestionsActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+            android:theme="@style/fontTheme" />
         <activity
             android:name=".Student.SuggestionsActivity"
             android:parentActivityName=".DashboardActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+            android:theme="@style/fontTheme" />
         <activity
             android:name=".Student.TimetableActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+            android:theme="@style/fontTheme" />
         <activity
             android:name=".Student.QuizActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity
             android:name=".Teacher.SetAttendanceActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+            android:theme="@style/fontTheme" />
         <activity
             android:name=".Teacher.CreateNoticeActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+            android:theme="@style/fontTheme" />
         <activity
             android:name=".Teacher.CreateQuizActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity
             android:name=".Teacher.CreateAssignmentsActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+            android:theme="@style/fontTheme" />
         <activity
             android:name=".Teacher.CreateTimetableActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+            android:theme="@style/fontTheme" />
         <activity
             android:name=".Student.NoticeBoardActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+            android:theme="@style/fontTheme" />
         <activity
             android:name=".Student.AssignmentsActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+            android:theme="@style/fontTheme" />
         <activity
             android:name=".Student.AttendanceActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+            android:theme="@style/fontTheme" />
         <activity android:name=".TeacherDashboardActivity" />
         <activity
             android:name=".ProfileActivity"
             android:parentActivityName=".DashboardActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+            android:theme="@style/fontTheme" />
         <activity
             android:name=".DashboardActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+            android:theme="@style/fontTheme" />
         <activity
             android:name=".StudentRegisterActivity"
             android:parentActivityName=".MainActivity2"

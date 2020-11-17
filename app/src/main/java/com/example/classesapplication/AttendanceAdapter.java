@@ -32,10 +32,16 @@ public class AttendanceAdapter extends FirebaseRecyclerAdapter<Attendance, Atten
         String name = attendance.getName();
         holder.textView.setText(name);
 
+        String studentclass = attendance.getcLass();
+        holder.textView2.setText("Class : "+studentclass);
+
         holder.present.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //holder.absent.setVisibility(View.GONE);
+                holder.textView3.setVisibility(View.VISIBLE);
+                holder.textView3.setText("Present");
+                holder.present.setVisibility(View.GONE);
+                holder.absent.setVisibility(View.GONE);
                 Toast.makeText(holder.present.getContext(),"Present", Toast.LENGTH_SHORT).show();
             }
         });
@@ -43,7 +49,10 @@ public class AttendanceAdapter extends FirebaseRecyclerAdapter<Attendance, Atten
         holder.absent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                holder.textView3.setVisibility(View.VISIBLE);
+                holder.textView3.setText("Absent");
+                holder.present.setVisibility(View.GONE);
+                holder.absent.setVisibility(View.GONE);
                 Toast.makeText(holder.present.getContext(),"Absent", Toast.LENGTH_SHORT).show();
             }
         });
@@ -59,13 +68,15 @@ public class AttendanceAdapter extends FirebaseRecyclerAdapter<Attendance, Atten
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView textView;
+        TextView textView, textView2, textView3;
         ImageView imageView;
         ImageButton present, absent;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             textView = itemView.findViewById(R.id.studentName);
+            textView2 = itemView.findViewById(R.id.studentClass);
+            textView3 = itemView.findViewById(R.id.presentText);
             imageView = itemView.findViewById(R.id.imageView);
             present = itemView.findViewById(R.id.present);
             absent = itemView.findViewById(R.id.absent);
