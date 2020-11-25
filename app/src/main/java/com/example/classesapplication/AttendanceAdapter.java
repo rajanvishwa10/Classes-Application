@@ -7,8 +7,10 @@ import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,17 +23,25 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import es.dmoral.toasty.Toasty;
 
 public class AttendanceAdapter extends FirebaseRecyclerAdapter<Attendance, AttendanceAdapter.ViewHolder> {
+
 
     public AttendanceAdapter(@NonNull FirebaseRecyclerOptions<Attendance> options) {
         super(options);
@@ -47,14 +57,74 @@ public class AttendanceAdapter extends FirebaseRecyclerAdapter<Attendance, Atten
 
         String studentclass = attendance.getcLass();
         holder.textView2.setText("Class : " + studentclass);
-
-
+        SharedPreferences sharedPreferences = holder.textView2.getContext().getSharedPreferences("teachername", Context.MODE_PRIVATE);
+        final String TeacherName = sharedPreferences.getString("teachername", "");
+        System.out.println(TeacherName);
         Date c = Calendar.getInstance().getTime();
-//System.out.println("Current time => " + c);
-
-        SimpleDateFormat df = new SimpleDateFormat("dd MMMM yyyy, h:mm aaa", Locale.getDefault());
+        SimpleDateFormat df = new SimpleDateFormat("dd MMMM yyyy", Locale.getDefault());
         final String date = df.format(c);
 
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final DatabaseReference myRef = database.getReference("Student Attendance");
+        myRef.orderByChild("TeacherName").equalTo(TeacherName).addListenerForSingleValueEvent(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    myRef.orderByChild("StudentName").equalTo(name).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if (snapshot.exists()) {
+                                myRef.orderByChild("Date").equalTo(date).addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        holder.present.setVisibility(View.GONE);
+                                        holder.absent.setVisibility(View.GONE);
+                                        holder.textView3.setVisibility(View.VISIBLE);
+                                        SharedPreferences sharedPreferences = holder.absent.getContext().getSharedPreferences("teachername", Context.MODE_PRIVATE);
+                                        String TeacherName = sharedPreferences.getString("teachername", "");
+                                        String text = snapshot.child("attendance " + name + " " + TeacherName).child("Attendance").getValue(String.class);
+
+                                         if(text == null){
+                                            holder.present.setVisibility(View.VISIBLE);
+                                            holder.absent.setVisibility(View.VISIBLE);
+                                            holder.textView3.setVisibility(View.GONE);
+                                        }else{
+                                             holder.textView3.setText(text);
+                                         }
+
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+//                                Toast.makeText(holder.textView.getContext(), "Data present", Toast.LENGTH_SHORT).show();
+
+                            } else {
+                                //Toast.makeText(holder.textView.getContext(), "Data absent", Toast.LENGTH_SHORT).show();
+                            }
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+                } else {
+                    Toast.makeText(holder.textView.getContext(), "Data absent", Toast.LENGTH_LONG).show();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         holder.present.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,7 +163,7 @@ public class AttendanceAdapter extends FirebaseRecyclerAdapter<Attendance, Atten
         hashMap.put("StudentName", StudentName);
         hashMap.put("Date", Date);
         long count = System.currentTimeMillis();
-        FirebaseDatabase.getInstance().getReference("Teachers").child("Student Attendance").child("attendance " + count)
+        FirebaseDatabase.getInstance().getReference().child("Student Attendance").child("attendance " + StudentName + " " + TeacherName)
                 .updateChildren(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -125,7 +195,6 @@ public class AttendanceAdapter extends FirebaseRecyclerAdapter<Attendance, Atten
 
         return new AttendanceAdapter.ViewHolder(view);
     }
-
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView textView, textView2, textView3;

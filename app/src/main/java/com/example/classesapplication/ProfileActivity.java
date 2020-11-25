@@ -62,7 +62,8 @@ public class ProfileActivity extends AppCompatActivity {
         circleImageView = findViewById(R.id.imageView);
 
         getWindow().setStatusBarColor(getResources().getColor(R.color.colorBack));
-        getWindow().setNavigationBarColor(getResources().getColor(R.color.colorBack));
+        getWindow().setNavigationBarColor(getResources().getColor(R.color.colorWhite));
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

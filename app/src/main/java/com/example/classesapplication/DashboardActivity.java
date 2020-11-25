@@ -71,8 +71,9 @@ public class DashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        getWindow().setNavigationBarColor(getResources().getColor(R.color.colorBack));
+        getWindow().setNavigationBarColor(getResources().getColor(R.color.colorWhite));
         getWindow().setStatusBarColor(getResources().getColor(R.color.colorBack));
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
 
         circleImageView = findViewById(R.id.imageView);
 
@@ -128,7 +129,6 @@ public class DashboardActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
 
         textView = findViewById(R.id.text2);
         read();
