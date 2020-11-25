@@ -1,6 +1,6 @@
 package com.example.classesapplication;
 
-public class Notice {
+ public class Notice {
     String Date, NoticeImage, NoticeText;
 
     public Notice() {

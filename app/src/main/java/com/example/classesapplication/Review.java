@@ -1,6 +1,6 @@
 package com.example.classesapplication;
 
-class Review {
+public class Review {
     String Rating, StudentName, Suggestions, TeacherName, Date;
 
     public Review(String rating, String studentName, String suggestions, String teacherName, String date) {

@@ -1,6 +1,6 @@
 package com.example.classesapplication;
 
-public class Attendance {
+ public class Attendance {
     public String name, email, cLass,profileImage;
 
     public Attendance() {

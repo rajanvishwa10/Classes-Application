@@ -51,7 +51,6 @@ public class SetAttendanceActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-
         adapter.stopListening();
     }
 }

@@ -96,7 +96,7 @@ public class SuggestionsActivity extends AppCompatActivity implements AdapterVie
         RatingBar ratingBar = findViewById(R.id.ratingBar);
         Float rating = ratingBar.getRating();
         String ratingString = rating.toString();
-//        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+
         EditText editText = findViewById(R.id.suggestions);
         String suggestion = editText.getText().toString();
         SharedPreferences sharedPreferences = getSharedPreferences("Student", Context.MODE_PRIVATE);
@@ -116,7 +116,7 @@ public class SuggestionsActivity extends AppCompatActivity implements AdapterVie
         hashMap.put("StudentName", studentName);
         hashMap.put("Date", date);
         long count = System.currentTimeMillis();
-        FirebaseDatabase.getInstance().getReference("Admin").child("Teacher Review").child(name+count)
+        FirebaseDatabase.getInstance().getReference("Admin").child("Teacher Review").child("Review"+count)
                 .updateChildren(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {

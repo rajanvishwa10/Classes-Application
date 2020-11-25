@@ -1,5 +1,8 @@
 package com.example.classesapplication;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,8 +16,18 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.classesapplication.Student.SuggestionsActivity;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Locale;
 
 import es.dmoral.toasty.Toasty;
 
@@ -29,11 +42,19 @@ public class AttendanceAdapter extends FirebaseRecyclerAdapter<Attendance, Atten
         String image = attendance.getProfileImage();
         Glide.with(holder.imageView.getContext()).load(image).into(holder.imageView);
 
-        String name = attendance.getName();
+        final String name = attendance.getName();
         holder.textView.setText(name);
 
         String studentclass = attendance.getcLass();
-        holder.textView2.setText("Class : "+studentclass);
+        holder.textView2.setText("Class : " + studentclass);
+
+
+        Date c = Calendar.getInstance().getTime();
+//System.out.println("Current time => " + c);
+
+        SimpleDateFormat df = new SimpleDateFormat("dd MMMM yyyy, h:mm aaa", Locale.getDefault());
+        final String date = df.format(c);
+
 
         holder.present.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,7 +63,10 @@ public class AttendanceAdapter extends FirebaseRecyclerAdapter<Attendance, Atten
                 holder.textView3.setText("Present");
                 holder.present.setVisibility(View.GONE);
                 holder.absent.setVisibility(View.GONE);
-                Toast.makeText(holder.present.getContext(),"Present", Toast.LENGTH_SHORT).show();
+                SharedPreferences sharedPreferences = holder.present.getContext().getSharedPreferences("teachername", Context.MODE_PRIVATE);
+                String TeacherName = sharedPreferences.getString("teachername", "");
+                addAttendance(holder.present.getContext(), "Present", TeacherName, name, date);
+                Toast.makeText(holder.present.getContext(), "Present", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -53,10 +77,45 @@ public class AttendanceAdapter extends FirebaseRecyclerAdapter<Attendance, Atten
                 holder.textView3.setText("Absent");
                 holder.present.setVisibility(View.GONE);
                 holder.absent.setVisibility(View.GONE);
-                Toast.makeText(holder.present.getContext(),"Absent", Toast.LENGTH_SHORT).show();
+                SharedPreferences sharedPreferences = holder.absent.getContext().getSharedPreferences("teachername", Context.MODE_PRIVATE);
+                String TeacherName = sharedPreferences.getString("teachername", "");
+                addAttendance(holder.absent.getContext(), "Absent", TeacherName, name, date);
+                Toast.makeText(holder.absent.getContext(), "Absent", Toast.LENGTH_SHORT).show();
             }
         });
 
+    }
+
+    private void addAttendance(final Context context, String attendance, String TeacherName, String StudentName, String Date) {
+        HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("Attendance", attendance);
+        hashMap.put("TeacherName", TeacherName);
+        hashMap.put("StudentName", StudentName);
+        hashMap.put("Date", Date);
+        long count = System.currentTimeMillis();
+        FirebaseDatabase.getInstance().getReference("Teachers").child("Student Attendance").child("attendance " + count)
+                .updateChildren(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toasty.success(context, "Attendance Added", Toast.LENGTH_SHORT).show();
+
+                } else {
+                    Toasty.error(context, "Error", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return super.getItemId(position);
+    }
+
+    @Override
+    public int getItemCount() {
+        return super.getItemCount();
     }
 
     @NonNull
@@ -66,6 +125,7 @@ public class AttendanceAdapter extends FirebaseRecyclerAdapter<Attendance, Atten
 
         return new AttendanceAdapter.ViewHolder(view);
     }
+
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView textView, textView2, textView3;
