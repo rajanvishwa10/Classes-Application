@@ -1,5 +1,6 @@
 package com.example.classesapplication.ui.home;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,18 +23,25 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import es.dmoral.toasty.Toasty;
+
 public class StudentFragment extends Fragment {
     View view;
     EditText editText, editText2;
     Button button;
     TextView textView;
     private FirebaseAuth mAuth;
+    ProgressDialog progressDialog;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_student, container, false);
 
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setTitle("Login");
+        progressDialog.setMessage("Checking for user");
+        progressDialog.setCancelable(false);
 
         editText = view.findViewById(R.id.studentemail);
         editText2 = view.findViewById(R.id.studentpass);
@@ -55,7 +63,7 @@ public class StudentFragment extends Fragment {
             public void onClick(View view) {
                 final String email = editText.getText().toString();
                 String pass = editText2.getText().toString();
-
+                progressDialog.show();
                 if (email.isEmpty()) {
                     editText.setError("Enter Email");
                     editText.requestFocus();
@@ -71,7 +79,6 @@ public class StudentFragment extends Fragment {
         });
         return view;
 
-
     }
 
     private void login(String email, String password) {
@@ -80,13 +87,14 @@ public class StudentFragment extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-
-                            Toast.makeText(getContext(), "Login Successful", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+                            Toasty.success(getContext(), "Login Successful", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getContext(), DashboardActivity.class);
                             startActivity(intent);
 
                         } else {
-                            Toast.makeText(getContext(), "Login Failed, Check your Email and Password", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+                            Toasty.error(getContext(), "Login Failed, Check your Email and Password", Toast.LENGTH_SHORT).show();
                         }
 
 

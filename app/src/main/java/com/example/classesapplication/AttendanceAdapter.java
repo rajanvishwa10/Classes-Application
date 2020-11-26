@@ -83,7 +83,7 @@ public class AttendanceAdapter extends FirebaseRecyclerAdapter<Attendance, Atten
                                         holder.textView3.setVisibility(View.VISIBLE);
                                         SharedPreferences sharedPreferences = holder.absent.getContext().getSharedPreferences("teachername", Context.MODE_PRIVATE);
                                         String TeacherName = sharedPreferences.getString("teachername", "");
-                                        String text = snapshot.child("attendance " + name + " " + TeacherName).child("Attendance").getValue(String.class);
+                                        String text = snapshot.child("attendance " + name + " " + TeacherName + " " + date).child("Attendance").getValue(String.class);
 
                                          if(text == null){
                                             holder.present.setVisibility(View.VISIBLE);
@@ -163,7 +163,7 @@ public class AttendanceAdapter extends FirebaseRecyclerAdapter<Attendance, Atten
         hashMap.put("StudentName", StudentName);
         hashMap.put("Date", Date);
         long count = System.currentTimeMillis();
-        FirebaseDatabase.getInstance().getReference().child("Student Attendance").child("attendance " + StudentName + " " + TeacherName)
+        FirebaseDatabase.getInstance().getReference().child("Student Attendance").child("attendance " + StudentName + " " + TeacherName+ " " + Date)
                 .updateChildren(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {

@@ -150,7 +150,7 @@
                         android:drawableTop="@drawable/ic_notice"
                         android:drawablePadding="-5dp"
                         android:fontFamily="@font/fonttype"
-                        android:text="Create Notice"
+                        android:text="View Notice"
                         android:textColor="#304FFE"
                         android:textSize="20sp" />
                 </androidx.cardview.widget.CardView>

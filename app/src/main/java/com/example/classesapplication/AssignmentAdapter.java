@@ -38,23 +38,6 @@ public class AssignmentAdapter extends FirebaseRecyclerAdapter<Assignments, Assi
             }
         });
 
-        final String pdf = assignments.getAssignment_Pdf();
-
-
-        holder.button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try{
-                    if(pdf.equals(null)){
-                        Toasty.warning(holder.button.getContext(),"No Pdf to Download", Toasty.LENGTH_LONG);
-                    }
-                }catch (NullPointerException e){
-                    Toasty.warning(holder.button.getContext(),"No Pdf to Download", Toasty.LENGTH_LONG);
-                }
-
-            }
-        });
-
         final String details = assignments.getAssignment_Details();
         holder.Assignment_details.setText(details);
 
@@ -83,7 +66,6 @@ public class AssignmentAdapter extends FirebaseRecyclerAdapter<Assignments, Assi
             time = itemView.findViewById(R.id.time);
             Assignment_details = itemView.findViewById(R.id.details);
             imageView = itemView.findViewById(R.id.imageView);
-            button = itemView.findViewById(R.id.download);
         }
     }
 }

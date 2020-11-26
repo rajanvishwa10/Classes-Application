@@ -17,19 +17,13 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
+            android:layout_height="?attr/actionBarSize"
+            app:title="Attendance"
+            app:navigationIcon="@drawable/ic_baseline_keyboard_backspace_24"
+            app:titleTextColor="@color/colorWhite">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="20dp"
-                android:fontFamily="@font/fonttype"
-                android:gravity="center"
-                android:text="attendance"
-                android:textAllCaps="true"
-                android:textColor="@android:color/white"
-                android:textSize="23sp" />
         </androidx.appcompat.widget.Toolbar>
 
 
@@ -57,5 +51,5 @@
         android:layout_marginTop="-50dp"
         android:layout_alignTop="@+id/relative2"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/ic_homework" />
+        android:src="@drawable/ic_attendance" />
 </RelativeLayout>

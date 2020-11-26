@@ -11,7 +11,7 @@
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="167dp"
+        android:layout_height="100dp"
         android:background="@color/colorBack"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,7 +56,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginHorizontal="80dp"
             android:layout_below="@+id/textView"
-            android:layout_marginBottom="40dp"/>
+            android:layout_marginBottom="20dp"/>
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -86,7 +86,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_below="@id/ratingBar"
+                    android:paddingTop="5dp"
                     android:layout_marginHorizontal="10dp"
+                    android:layout_marginVertical="10dp"
                     android:gravity="top"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
@@ -100,7 +102,7 @@
                     android:layout_below="@id/suggestions"
                     android:layout_centerHorizontal="true"
                     android:layout_marginHorizontal="20sp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="10dp"
                     android:background="@drawable/round_button"
                     android:text="Give Feedback"
                     android:onClick="giveFeedback"
@@ -115,6 +117,6 @@
         android:layout_height="80dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="128dp"
+        android:layout_marginTop="60dp"
         android:src="@drawable/ic_review" />
 </RelativeLayout>

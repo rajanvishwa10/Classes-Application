@@ -11,7 +11,6 @@
         android:layout_width="match_parent"
         android:background="@color/colorBack"
         android:layout_height="?attr/actionBarSize"
-        app:menu="@menu/add_notice"
         app:navigationIcon="@drawable/ic_baseline_keyboard_backspace_24"
         app:title="Add Assignments"
         app:titleTextColor="@color/colorWhite"/>
@@ -26,7 +25,7 @@
         android:layout_below="@id/toolbar"
         android:src="@drawable/ic_menu_camera" />
 
-    <TextView
+    <!--TextView
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -49,12 +48,12 @@
         android:background="@drawable/box_background"
         android:onClick="chooseFile"
         android:textSize="16sp"
-        android:textColor="@android:color/black" />
+        android:textColor="@android:color/black" /-->
 
     <EditText
-        android:layout_below="@id/choose"
+        android:layout_below="@id/imageView"
         android:id="@+id/assignment"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_marginHorizontal="20dp"
         android:hint="Enter Details..."
         android:padding="12dp"

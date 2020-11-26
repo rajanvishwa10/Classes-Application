@@ -36,20 +36,21 @@ public class MainActivity2 extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        toolbar.setElevation(0f);
+        toolbar.setElevation(0);
 
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_admin)
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_admin, R.id.nav_aboutus, R.id.nav_contact)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        getWindow().setNavigationBarColor(getResources().getColor(R.color.colorBack));
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+        getWindow().setNavigationBarColor(getResources().getColor(R.color.colorWhite));
         getWindow().setStatusBarColor(getResources().getColor(R.color.colorBack));
 
         SharedPreferences sharedPreferences = getSharedPreferences("loginStatus", Context.MODE_PRIVATE);

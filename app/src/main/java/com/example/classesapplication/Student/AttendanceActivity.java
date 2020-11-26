@@ -1,10 +1,12 @@
 package com.example.classesapplication.Student;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.classesapplication.AssignmentAdapter;
 import com.example.classesapplication.Assignments;
@@ -24,7 +26,8 @@ public class AttendanceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attendance);
 
-        getWindow().setNavigationBarColor(getResources().getColor(R.color.colorBack));
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+        getWindow().setNavigationBarColor(getResources().getColor(R.color.colorWhite));
         getWindow().setStatusBarColor(getResources().getColor(R.color.colorBack));
 
         recyclerView = findViewById(R.id.recyclerView);
@@ -32,6 +35,14 @@ public class AttendanceActivity extends AppCompatActivity {
         LayoutManager.setReverseLayout(true);
         LayoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(LayoutManager);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         FirebaseRecyclerOptions<Attendance2> options =
                 new FirebaseRecyclerOptions.Builder<Attendance2>()
