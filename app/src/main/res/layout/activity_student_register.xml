@@ -99,7 +99,7 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
+            <!--com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textinputclass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -117,7 +117,17 @@
                     android:hint="Class"
                     android:inputType="number" />
 
-            </com.google.android.material.textfield.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout-->
+
+            <Spinner
+                android:id="@+id/textinputclass"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_below="@+id/textinput1"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="20dp"/>
 
             <Button
                 android:id="@+id/studentlogin"
