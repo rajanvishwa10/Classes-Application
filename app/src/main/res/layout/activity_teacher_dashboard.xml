@@ -69,9 +69,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="18dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="15dp"
+                        android:layout_gravity="center"
                         android:drawableTop="@drawable/ic_attendance"
                         android:drawablePadding="-5dp"
                         android:fontFamily="@font/fonttype"
@@ -97,9 +95,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="3dp"
-                        android:layout_marginEnd="15dp"
+                        android:layout_gravity="center"
                         android:drawableTop="@drawable/ic_time"
                         android:drawablePadding="-8dp"
                         android:fontFamily="@font/fonttype"
@@ -145,8 +141,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="10dp"
+                        android:layout_gravity="center"
+
                         android:drawableTop="@drawable/ic_notice"
                         android:drawablePadding="-5dp"
                         android:fontFamily="@font/fonttype"
@@ -171,9 +167,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginEnd="10dp"
+                        android:layout_gravity="center"
                         android:drawableTop="@drawable/ic_homework"
                         android:drawablePadding="-10dp"
                         android:fontFamily="@font/fonttype"
