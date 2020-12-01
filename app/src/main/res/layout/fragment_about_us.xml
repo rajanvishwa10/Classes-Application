@@ -53,14 +53,8 @@
             android:layout_height="match_parent"
             android:elevation="1dp"
             android:padding="10dp"
-            android:text="sdhbadhbas \nsds\nsds\nsds\nsds
-            \nsds\nsds\nsds
-            \nsds\nsds\nsds
-            \nsds\tsdsdsdsdsd
-            \nsds\nsds
-            \nsds
-            \nsds \tsdhabsdabsdasdashshbdssdsdsd
-            \nsds"
+            android:lineSpacingExtra="10dp"
+            android:text="Teerth Coaching classes is one of the leading educational institutes in the vicinity of Ghatkopar and Sakinaka where we believe in quality education. We believe that good teachers and good technology is the best combination for success and hence we provide best faculties who do their best in teaching coupled with advanced technology in the market of education which is used by our faculty. So WELCOME TO TEERTH COACHING CLASSES."
             android:textColor="@android:color/black"
             android:textSize="16sp" />
 

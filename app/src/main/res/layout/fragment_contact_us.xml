@@ -61,11 +61,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
+                android:textIsSelectable="true"
                 android:paddingStart="10dp"
                 android:drawableStart="@drawable/icons8_phone_40px"
                 android:drawablePadding="10dp"
                 android:gravity="fill"
-                android:text="+91 1234567890"
+                android:text="+91 9930720049"
                 android:textColor="@android:color/black"
                 android:textSize="20sp" />
 
@@ -74,12 +75,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
+                android:textIsSelectable="true"
                 android:drawableEnd="@drawable/ic_whatsap"
                 android:drawablePadding="10dp"
                 android:paddingEnd="10dp"
                 android:gravity="end|center"
                 android:layout_marginVertical="25dp"
-                android:text="+91 1234567890"
+                android:text="+91 9930720049"
                 android:textColor="@android:color/black"
                 android:textSize="20sp" />
 
@@ -90,6 +92,7 @@
                 android:layout_marginHorizontal="10dp"
                 android:drawableStart="@drawable/ic_mail"
                 android:paddingStart="10dp"
+                android:textIsSelectable="true"
                 android:drawablePadding="10dp"
                 android:gravity="fill"
                 android:text="teerthclassesfirebase@gmail.com"
